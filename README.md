@@ -1,12 +1,13 @@
 # ABBConnector
-Library for sending data from a Raspberry Pi to an ABB Robot
+Library for sending data from the Raspberry Pi to an ABB Robot (using Pi4J) 
 
 
 #Building
-	
-To build, run:
+* Make sure, all Pi4J files are present in the lib folder.
 
-    ant
+* To build, run:
+
+    	ant
 
 #Examples
 
