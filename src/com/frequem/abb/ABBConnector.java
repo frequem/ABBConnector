@@ -159,25 +159,25 @@ public class ABBConnector {
             System.out.println("DEBUG: sendByte(data="+data+")");
         
         if(DEBUG <= DEBUGMODE_SHOWMESSAGES)
-            while(IN_GPIO3_DO4.isHigh()) //ABB READY
+            while(IN_GPIO3_DO4.isLow()) //ABB NOT READY
                 try{ Thread.sleep(100); }catch(InterruptedException e){}
         
         if(DEBUG >= DEBUGMODE_SHOWMESSAGES)
             System.out.println("ABB listening...");
         
-        this.setOutputPinState(genParity((byte) (data >>> 4))); //SYNC low
+        this.setOutputPinState(genParity((byte) ((data >>> 4) | (1 << SYNC)))); //SYNC high
         
         if(DEBUG >= DEBUGMODE_SHOWMESSAGES)
             System.out.println("First nibble sent...");
         
         if(DEBUG <= DEBUGMODE_SHOWMESSAGES)
-            while(IN_GPIO3_DO4.isLow()) //ABB READY
+            while(IN_GPIO3_DO4.isHigh()) //ABB NOT READY
                 try{ Thread.sleep(100); }catch(InterruptedException e){}
         
         if(DEBUG >= DEBUGMODE_SHOWMESSAGES)
             System.out.println("ABB listening... (again)");
         
-        this.setOutputPinState(genParity((byte)(data & 0b1111 | (1 << SYNC)))); //SYNC high
+        this.setOutputPinState(genParity((byte)(data & 0b1111))); //SYNC low
         
         if(DEBUG >= DEBUGMODE_SHOWMESSAGES)
             System.out.println("Second nibble sent...");
