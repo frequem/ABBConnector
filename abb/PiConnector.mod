@@ -34,29 +34,29 @@ MODULE PiConnector
     ENDFUNC
     
     FUNC byte receive_nibble(dionum state)
-		var byte data:=0;
-		var byte parity:=BitNeg(calc_parity(data));
-		
-		WHILE parity <> diParity DO
-			SetDO doReady, state;
-			WaitDI diSync, state;
+	var byte data:=0;
+	var byte parity:=BitNeg(calc_parity(data));
+	
+	WHILE parity <> diParity DO
+		SetDO doReady, state;
+		WaitDI diSync, state;
 			
-			data:=BitLSh(diData3, 3);
-			data:=BitOr(data, BitLSh(diData3, 2));
-			data:=BitOr(data, BitLSh(diData2, 1));
-			data:=BitOr(data, diData1);
+		data:=BitLSh(diData3, 3);
+		data:=BitOr(data, BitLSh(diData3, 2));
+		data:=BitOr(data, BitLSh(diData2, 1));
+		data:=BitOr(data, diData1);
 			
-			parity:=calc_parity(data);
+		parity:=calc_parity(data);
         ENDWHILE
         
         RETURN data;
     ENDFUNC
     
     FUNC byte calc_parity(byte data)
-		RETURN BitAnd((BitAnd(data, 1) +
-			   (BitAnd(BitRSh(data, 1), 1)) + 
-			   (BitAnd(BitRSh(data, 2), 1)) +
-			   (BitAnd(BitRSh(data, 3), 1)), 1);
+	RETURN BitAnd((BitAnd(data, 1) +
+		(BitAnd(BitRSh(data, 1), 1)) + 
+		(BitAnd(BitRSh(data, 2), 1)) +
+		(BitAnd(BitRSh(data, 3), 1)), 1);
     ENDFUNC
     
 ENDMODULE
