@@ -35,7 +35,7 @@ MODULE PiConnector
     
     FUNC byte receive_nibble(dionum state)
 	var byte data:=0;
-	var byte parity:=BitNeg(calc_parity(data));
+	var byte parity:=BitNeg(diParity);
 	
 	WHILE parity <> diParity DO
 		SetDO doReady, state;
