@@ -34,7 +34,6 @@ MODULE PiConnector
     ENDFUNC
     
     FUNC byte receive_nibble(dionum state)
-<<<<<<< HEAD:abb/PiConnector/PiConnector.mod
 		var byte data:=0;
 		var byte parity:=0;
 		parity:=BitNeg(calc_parity(data));
@@ -48,19 +47,6 @@ MODULE PiConnector
 			data:=BitOr(data, BitLSh(diData3, 2));
 			data:=BitOr(data, BitLSh(diData2, 1));
 			data:=BitOr(data, diData1);
-=======
-	var byte data:=0;
-	var byte parity:=BitNeg(diParity);
-	
-	WHILE parity <> diParity DO
-		SetDO doReady, state;
-		WaitDI diSync, state;
-			
-		data:=BitLSh(diData3, 3);
-		data:=BitOr(data, BitLSh(diData3, 2));
-		data:=BitOr(data, BitLSh(diData2, 1));
-		data:=BitOr(data, diData1);
->>>>>>> 6ee679ac2f5a7eb97842e6c9282565d8bbc7a92a:abb/PiConnector.mod
 			
 		parity:=calc_parity(data);
         ENDWHILE
@@ -69,17 +55,10 @@ MODULE PiConnector
     ENDFUNC
     
     FUNC byte calc_parity(byte data)
-<<<<<<< HEAD:abb/PiConnector/PiConnector.mod
 		RETURN BitAnd((BitAnd(data, 1) +
 			   (BitAnd(BitRSh(data, 1), 1)) + 
 			   (BitAnd(BitRSh(data, 2), 1)) +
 			   (BitAnd(BitRSh(data, 3), 1)) + 1), 1);
-=======
-	RETURN BitAnd((BitAnd(data, 1) +
-		(BitAnd(BitRSh(data, 1), 1)) + 
-		(BitAnd(BitRSh(data, 2), 1)) +
-		(BitAnd(BitRSh(data, 3), 1)), 1);
->>>>>>> 6ee679ac2f5a7eb97842e6c9282565d8bbc7a92a:abb/PiConnector.mod
     ENDFUNC
     
 ENDMODULE
