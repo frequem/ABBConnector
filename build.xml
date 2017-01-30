@@ -26,9 +26,14 @@
 			<fileset dir="${bin}"/>
 			<zipgroupfileset dir="${lib}" includes="*.jar" excludes="META-INF/*"/>
 			<manifest>
+				<attribute name="Main-Class" value="com.frequem.abb.Test"/>
 				<attribute name="Class-Path" value="."/>
 			</manifest>
 		</jar>
+	</target>
+	
+	<target name="run" depends="release">
+		<java jar="${release}/${ant.project.name}.jar" fork="true"/>
 	</target>
 	
 	<target name="clean" description="clean up">
