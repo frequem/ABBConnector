@@ -160,7 +160,7 @@ public class ABBConnector {
         
         if(DEBUG <= DEBUGMODE_SHOWMESSAGES)
             while(IN_GPIO3_DO4.isHigh()) //ABB NOT READY, inverted
-                try{ Thread.sleep(100); }catch(InterruptedException e){}
+                try{ Thread.sleep(10); }catch(InterruptedException e){}
         
         if(DEBUG >= DEBUGMODE_SHOWMESSAGES)
             System.out.println("ABB listening...");
@@ -172,7 +172,7 @@ public class ABBConnector {
         
         if(DEBUG <= DEBUGMODE_SHOWMESSAGES)
             while(IN_GPIO3_DO4.isLow()) //ABB NOT READY, inverted
-                try{ Thread.sleep(100); }catch(InterruptedException e){}
+                try{ Thread.sleep(10); }catch(InterruptedException e){}
         
         if(DEBUG >= DEBUGMODE_SHOWMESSAGES)
             System.out.println("ABB listening... (again)");
