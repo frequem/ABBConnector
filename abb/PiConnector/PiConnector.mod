@@ -44,7 +44,7 @@ FUNC byte receive_nibble(dionum state)
 		WaitDI diSync, state;
 			
 		data:=0;
-		data:=BitLSh(diData3, 3);
+		data:=BitLSh(diData4, 3);
 		data:=BitOr(data, BitLSh(diData3, 2));
 		data:=BitOr(data, BitLSh(diData2, 1));
 		data:=BitOr(data, diData1);
